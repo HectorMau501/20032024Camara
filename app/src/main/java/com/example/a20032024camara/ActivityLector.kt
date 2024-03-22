@@ -16,6 +16,13 @@ class ActivityLector : AppCompatActivity() {
     private lateinit var btnEscanear: Button
     private lateinit var btnCapturar: Button
     private lateinit var btnLimpiar: Button
+    private lateinit var btnShow: Button
+    private lateinit var name: EditText
+    private lateinit var systemProceed: EditText
+
+    //Arreglo
+    var codigoBarra = ArrayList<CodigoBarra?>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +34,46 @@ class ActivityLector : AppCompatActivity() {
         btnEscanear = findViewById(R.id.btnEscanear)
         btnCapturar = findViewById(R.id.btnCapturar)
         btnLimpiar= findViewById(R.id.btnLimpiar)
+        btnShow = findViewById(R.id.btnMostrar)
+        name = findViewById(R.id.editNombre)
+        systemProceed = findViewById(R.id.editSistema)
+
 
         //Eventos
         btnEscanear.setOnClickListener { escanearCodigo() }
         btnCapturar.setOnClickListener {
             if(codigo.text.toString().isNotEmpty() && descripcion.toString().isNotEmpty()){
+                add()
                 Toast.makeText(this, "Datos capturados",Toast.LENGTH_SHORT).show()
                 limpiar()
             } else{
                 Toast.makeText(this, "Debe registrar datos", Toast.LENGTH_LONG ).show()
             }
         }//btnCapturar
+        btnShow.setOnClickListener { mostrarDatos() }
         btnLimpiar.setOnClickListener { limpiar() }
+    }
+
+    private fun add(){
+        //Areglo
+        val codigoBarraItem = CodigoBarra()
+
+        codigoBarraItem.code = codigo.text.toString()
+        codigoBarraItem.description = descripcion.text.toString()
+        codigoBarraItem.nombre = name.text.toString()
+        codigoBarraItem.tipoQR = systemProceed.text.toString()
+        Toast.makeText(this, "Codigo ${codigoBarraItem.code}",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Descripcion ${codigoBarraItem.description} ",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Nombre ${codigoBarraItem.nombre }",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Tipo de Sistema ${ codigoBarraItem.tipoQR }",Toast.LENGTH_SHORT).show()
+
+        codigoBarra.add(codigoBarraItem) //Lo añadimos al arraylist
+    }
+
+    private fun mostrarDatos(){ //Enviamos el arreglo por parametro
+        val intent = Intent(this, MostrarActivity::class.java)
+        intent.putExtra("codigoBarraArray", codigoBarra)
+        startActivity(intent)
     }
 
     private fun escanearCodigo() {
@@ -77,6 +112,8 @@ class ActivityLector : AppCompatActivity() {
     private fun limpiar() {
         codigo.setText("")
         descripcion.setText("")
+        name.text.clear()
+        systemProceed.text.clear()
         codigo.requestFocus()
     }//Limpiar
 }

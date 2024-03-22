@@ -59,30 +59,72 @@
         app:layout_constraintTop_toBottomOf="@+id/editCodigo" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="61dp"
         android:layout_marginEnd="100dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDescripcion">
+        app:layout_constraintTop_toBottomOf="@+id/editSistema">
 
         <Button
             android:id="@+id/btnCapturar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/capturar"
-            android:layout_marginHorizontal="8dp"/>
+            android:layout_marginHorizontal="8dp"
+            android:text="@string/capturar" />
 
         <Button
             android:id="@+id/btnLimpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/limpiar"
-            android:layout_marginHorizontal="8dp"/>
+            android:layout_marginHorizontal="8dp"
+            android:text="@string/limpiar" />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/editNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="103dp"
+        android:ems="10"
+        android:hint="Nombre del QR"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDescripcion" />
+
+    <EditText
+        android:id="@+id/editSistema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:hint="Sistema del que Proviene"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNombre" />
+
+    <Button
+        android:id="@+id/btnMostrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="100dp"
+        android:text="Mostrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
